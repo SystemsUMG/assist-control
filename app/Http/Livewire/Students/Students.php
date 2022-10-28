@@ -27,6 +27,7 @@ class Students extends Component
 
     public $search = '';
 
+    public $editing = false;
     public $modalTitle = '';
     public $view = 'create-student';
     public $showingModal = false;
@@ -56,6 +57,7 @@ class Students extends Component
 
     public function newStudent()
     {
+        $this->editing = false;
         $this->resetErrorBag();
         $this->user = new User;
         $this->showingModal = true;
@@ -76,6 +78,14 @@ class Students extends Component
         $this->modalTitle = 'Assign Student';
     }
 
+    public function editStudent(User $user)
+    {
+        $this->editing = true;
+        $this->modalTitle = 'Update Student';
+        $this->user = $user;
+        $this->showingModal = true;
+    }
+
     public function save()
     {
         $this->validate();
@@ -89,10 +99,34 @@ class Students extends Component
             $user->type = $this->user->type;
             $user->career_in_center_id = $this->user->career_in_center_id;
             $user->save();
+            session()->flash('success', __('crud.students.successfully_edited_title'));
         } else {
             $this->user->save();
+            session()->flash('success', __('crud.students.successfully_created_title'));
         }
         $this->showingModal = false;
+        $this->redirectRoute('students');
+    }
+
+    public function deleteStudent(User $user)
+    {
+        $user->delete();
+        session()->flash('success', __('crud.students.successfully_delete_title'));
+        $this->redirectRoute('students');
+    }
+
+    public function status(User $user)
+    {
+        if ($user->status) {
+            $user->status = 0;
+            session()->flash('success', __('crud.students.disabled_user'));
+        } else {
+            $user->status = 1;
+            session()->flash('success', __('crud.students.enabled_user'));
+        }
+
+        $user->save();
+        $this->redirectRoute('students');
     }
 
     public function render(): Factory|View|Application

@@ -9,7 +9,7 @@ class UserManagement extends Component
 {
     public User $user;
     public $showingModal = false;
-    public $editing = false;
+
     public $modalTitle = '';
 
     public function showModal()
@@ -26,15 +26,12 @@ class UserManagement extends Component
 
     public function newUser()
     {
-        $this->editing = false;
         $this->modalTitle = trans('crud.form_fields.new_title');
-
         $this->showModal();
     }
 
     public function editField(User $user)
     {
-        $this->editing = true;
         $this->modalTitle = trans('crud.form_fields.edit_title');
         $this->user = $user;
 

@@ -16,7 +16,6 @@ class Courses extends Component
 
     public $search = '';
 
-    public $editing = false;
     public $showingModal = false;
     public $modalTitle = '';
 
@@ -35,7 +34,6 @@ class Courses extends Component
 
     public function newCourse()
     {
-        $this->editing = false;
         $this->modalTitle = trans('crud.courses.create_title');
         $this->course = new Course();
         $this->resetErrorBag();
@@ -44,7 +42,6 @@ class Courses extends Component
 
     public function editCourse(Course $course)
     {
-        $this->editing = true;
         $this->modalTitle = trans('crud.courses.edit_title');
         $this->course = $course;
 

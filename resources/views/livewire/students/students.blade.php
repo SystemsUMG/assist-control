@@ -27,24 +27,19 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                             <tr>
-                                <th
-                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Name
                                 </th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Tuition
                                 </th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Phone
                                 </th>
-                                <th
-                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                     center / Career
                                 </th>
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Status
                                 </th>
                                 <th class="text-secondary opacity-7"></th>
@@ -88,20 +83,26 @@
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         @if ($student->status)
-                                            <span class="badge badge-sm bg-gradient-success">Enabled</span>
+                                            <button class="btn m-0 badge badge-sm bg-gradient-success"
+                                                  wire:click="status({{ $student }})">
+                                                Enabled
+                                            </button>
                                         @else
-                                            <span class="badge badge-sm bg-gradient-danger">Disabled</span>
+                                            <button class="btn m-0 badge badge-sm bg-gradient-danger"
+                                                  wire:click="status({{ $student }})">
+                                                Disabled
+                                            </button>
                                         @endif
                                     </td>
                                     <td class="align-middle">
-                                        <div class="btn pt-1 m-0">
+                                        <button class="btn pt-1 m-0" wire:click="editStudent({{ $student }})">
                                             <i class="fa-solid fa-user-pen text-info fa-2xl" data-toggle="tooltip"
                                                data-original-title="Edit student"></i>
-                                        </div>
-                                        <div class="btn pt-1 m-0">
+                                        </button>
+                                        <button class="btn pt-1 m-0" wire:click="deleteStudent({{ $student }})">
                                             <i class="fa-solid fa-user-xmark text-danger fa-2xl" data-toggle="tooltip"
                                                data-original-title="Edit student"></i>
-                                        </div>
+                                        </button>
                                     </td>
                                 </tr>
                             @empty
@@ -134,7 +135,7 @@
 
             <div class="modal-body">
                 <div class="nav-wrapper position-relative end-0">
-                    <ul class="nav nav-pills nav-fill p-1" role="tablist" wire:ignore>
+                    <ul class="nav nav-pills nav-fill p-1" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" href="javascript:;"
                                role="tab" aria-selected="true" wire:click="createView()">
@@ -142,13 +143,15 @@
                                 <span class="ms-1">Create User</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="javascript:;"
-                               role="tab" aria-selected="false" wire:click="assignView()">
-                                <i class="fa-solid fa-user-check"></i>
-                                <span class="ms-1">To Assign</span>
-                            </a>
-                        </li>
+                        @if (!$editing)
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="javascript:;"
+                                   role="tab" aria-selected="false" wire:click="assignView()">
+                                    <i class="fa-solid fa-user-check"></i>
+                                    <span class="ms-1">To Assign</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 @include("livewire.students.$view")

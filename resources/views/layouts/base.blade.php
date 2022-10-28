@@ -73,6 +73,63 @@
 
 {{ $slot }}
 
+@if(session()->has('success'))
+    <div class="position-fixed bottom-1 end-1 z-index-2">
+        <div class="toast fade show p-2 bg-white" role="alert" aria-live="assertive" id="toast"
+             aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-success me-2">
+                    check
+                </i>
+                <span class="me-auto font-weight-bold">Success</span>
+                <small class="text-body">{!! \Carbon\Carbon::now()->format('h:s')  !!}</small>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast"
+                   aria-label="Close"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                {!! session()->get('success')!!}
+            </div>
+        </div>
+    </div>
+@endif
+@if(session()->has('warning'))
+    <div class="position-fixed bottom-1 end-1 z-index-2">
+        <div class="toast fade show p-2 bg-white" role="alert" aria-live="assertive" id="toast"
+             aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="fa-solid fa-circle-exclamation me-2 text-warning fa-lg"></i>
+                <span class="me-auto font-weight-bold">Success</span>
+                <small class="text-body">{!! \Carbon\Carbon::now()->format('h:s')  !!}</small>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast"
+                   aria-label="Close"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                {!! session()->get('warning')!!}
+            </div>
+        </div>
+    </div>
+@endif
+@if(session()->has('error'))
+    <div class="position-fixed bottom-1 end-1 z-index-2">
+        <div class="toast fade show p-2 bg-white" role="alert" aria-live="assertive" id="toast"
+             aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="fa-solid fa-xmark me-2 text-danger fa-lg"></i>
+                <span class="me-auto font-weight-bold">Success</span>
+                <small class="text-body">{!! \Carbon\Carbon::now()->format('h:s')  !!}</small>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast"
+                   aria-label="Close"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                {!! session()->get('error')!!}
+            </div>
+        </div>
+    </div>
+@endif
+
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>

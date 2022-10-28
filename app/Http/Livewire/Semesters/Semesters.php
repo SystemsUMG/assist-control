@@ -16,7 +16,6 @@ class Semesters extends Component
 
     public $search = '';
 
-    public $editing = false;
     public $showingModal = false;
     public $modalTitle = '';
 
@@ -36,7 +35,6 @@ class Semesters extends Component
 
     public function newSemester()
     {
-        $this->editing = false;
         $this->modalTitle = trans('crud.semesters.create_title');
         $this->semester = new Semester();
         $this->resetErrorBag();
@@ -45,10 +43,8 @@ class Semesters extends Component
 
     public function editSemester(Semester $semester)
     {
-        $this->editing = true;
         $this->modalTitle = trans('crud.semesters.edit_title');
         $this->semester = $semester;
-
         $this->showingModal = true;
     }
 

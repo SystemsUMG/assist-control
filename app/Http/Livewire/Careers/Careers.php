@@ -16,7 +16,6 @@ class Careers extends Component
 
     public $search = '';
 
-    public $editing = false;
     public $showingModal = false;
     public $modalTitle = '';
 
@@ -35,7 +34,6 @@ class Careers extends Component
 
     public function newCareer()
     {
-        $this->editing = false;
         $this->modalTitle = trans('crud.careers.create_title');
         $this->career = new Career();
         $this->resetErrorBag();
@@ -44,7 +42,6 @@ class Careers extends Component
 
     public function editCareer(Career $career)
     {
-        $this->editing = true;
         $this->modalTitle = trans('crud.careers.edit_title');
         $this->career = $career;
 
