@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,13 +14,13 @@ return new class extends Migration
     {
         Schema::table('student_assignments', function (Blueprint $table) {
             $table
-                ->foreign('course_section_id')
+                ->foreign('user_id')
                 ->references('id')
-                ->on('course_sections');
+                ->on('users');
             $table
                 ->foreign('course_section_id')
                 ->references('id')
-                ->on('users');
+                ->on('course_sections');
         });
     }
 
@@ -33,8 +32,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('student_assignments', function (Blueprint $table) {
-            $table->dropForeign(['course_section_id']);
             $table->dropForeign(['user_id']);
+            $table->dropForeign(['course_section_id']);
         });
     }
 };

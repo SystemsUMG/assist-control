@@ -9,7 +9,7 @@
                         </h4>
                         <div class="row mt-3">
                             <div class="px-4">
-                                <div class="card bg-gray-200">
+                                <div class="card ">
                                     <a href="{{ route('login.google') }}">
                                         <div class="p-2">
                                             <i class="fa fa-google text-danger fa-lg col-3"></i>

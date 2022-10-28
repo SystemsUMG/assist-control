@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('semesters', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table
                 ->foreign('career_in_center_id')
                 ->references('id')
@@ -27,7 +27,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('semesters', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['career_in_center_id']);
         });
     }

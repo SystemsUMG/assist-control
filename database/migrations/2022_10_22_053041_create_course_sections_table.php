@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('course_sections', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('start_date');
             $table->string('end_date');
-            $table->unsignedBigInteger('course_in_semester_id');
+            $table->unsignedBigInteger('career_in_center_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('semester_id');
             $table->timestamps();
         });
     }

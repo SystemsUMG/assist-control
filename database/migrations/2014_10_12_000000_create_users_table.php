@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tuition');
+            $table->string('tuition')->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('google_id')->unique()->nullable();
@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->boolean('status');
             $table->string('type');
+            $table->unsignedBigInteger('career_in_center_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

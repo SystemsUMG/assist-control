@@ -22,11 +22,15 @@ class SocialAuthGoogleController extends Controller
             $existUser = User::where('email', $googleUser->email)->first();
 
             if ($existUser) {
-                $existUser->update([
-                    'google_id' => $googleUser->id,
-                    'google_avatar' => $googleUser->avatar,
-                ]);
-                Auth::loginUsingId($existUser->id);
+                if ($existUser->status == 1) {
+                    $existUser->update([
+                        'google_id' => $googleUser->id,
+                        'google_avatar' => $googleUser->avatar,
+                    ]);
+                    Auth::loginUsingId($existUser->id);
+                } else {
+                    return redirect()->route('login');
+                }
             } else {
                 $user = new User;
                 $user->name = $googleUser->name;

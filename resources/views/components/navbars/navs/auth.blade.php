@@ -15,7 +15,7 @@
                     <a href="{{ route('user.profile')}}" class="nav-link text-body font-weight-bold px-0"
                        data-bs-toggle="tooltip" data-bs-placement="top" title="Profile"
                     >
-                        <i class="fa fa-user me-sm-1"></i>
+                        <i class="fa-solid fa-user-gear me-sm-1"></i>
                     </a>
                 </li>
                 <li class="nav-item d-flex align-items-center">
