@@ -33,6 +33,7 @@ class SocialAuthGoogleController extends Controller
                 }
             } else {
                 $user = new User;
+                $user->tuition = rand(1000, 9999);
                 $user->name = $googleUser->name;
                 $user->email = $googleUser->email;
                 $user->google_id = $googleUser->id;
