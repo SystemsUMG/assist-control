@@ -20,7 +20,7 @@
         <div class="card-body">
             <div class="row">
                 @forelse($permissions as $permission)
-                    <div class="col-3">
+                    <div class="col-sm-3">
                         <div class="border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                             <div class="row">
                                 <div class="col-2">
