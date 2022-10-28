@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Bryan Sajbochol',
             'email' => 'bsajbochols@miumg.edu.gt',
         ]);
+        User::factory()->create([
+            'name' => 'Leonardo Sontay',
+            'email' => 'lsontayc@miumg.edu.gt',
+        ]);
         $this->call(PermissionsSeeder::class);
     }
 }

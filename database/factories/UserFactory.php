@@ -18,9 +18,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'tuition' => '1990-19-19722',
-            'google_id' => '',
-            'google_avatar' => '',
+            'tuition' => rand(1000, 9999),
             'phone' => $this->faker->phoneNumber(),
             'status' => 1,
             'type' => 'admin',
