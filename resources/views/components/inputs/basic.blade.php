@@ -9,7 +9,7 @@
 ])
 <div class="row col-12">
     <div class="col-12">
-        <div class="input-group input-group-outline my-3">
+        <div class="input-group input-group-outline my-3 is-filled">
             @if($label ?? null)
                 @include('components.inputs.partials.label')
             @endif
