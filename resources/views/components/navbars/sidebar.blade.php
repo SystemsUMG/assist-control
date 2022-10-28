@@ -27,17 +27,8 @@
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ Request::is('users','users/*') ? ' active bg-gradient-primary' : '' }}  "
-                   href="{{ route('users') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Users</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-white {{ Request::is('roles','roles/*') ? ' active bg-gradient-primary' : '' }}  "
-                   href="{{ route('users') }}">
+                   href="{{ route('roles') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-user-tag"></i>
                     </div>
@@ -46,7 +37,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white {{ Request::is('permissions','permissions/*') ? ' active bg-gradient-primary' : '' }}  "
-                   href="{{ route('users') }}">
+                   href="{{ route('permissions') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-key"></i>
                     </div>
@@ -103,12 +94,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ Request::is('notifications','notifications/*') ? ' active bg-gradient-primary' : '' }}  "
-                   href="{{ route('notifications') }}">
+                <a class="nav-link text-white {{ Request::is('teachers','teachers/*') ? ' active bg-gradient-primary' : '' }}  "
+                   href="{{ route('teachers') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-bell"></i>
+                        <i class="fa-solid fa-chalkboard-user"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Notifications</span>
+                    <span class="nav-link-text ms-1">Teachers</span>
                 </a>
             </li>
         </ul>

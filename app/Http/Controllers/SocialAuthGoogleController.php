@@ -41,9 +41,19 @@ class SocialAuthGoogleController extends Controller
                 $user->status = 1;
                 $user->type = 'general';
                 $user->save();
+                $user->syncRoles('general');
                 Auth::loginUsingId($user->id);
             }
-            return redirect()->route('dashboard');
+            switch (Auth::user()->type) {
+                case 'general':
+                    return redirect()->route('no-assignment');
+                case 'student':
+                    return redirect()->route('assistances');
+                case 'teacher':
+                    return redirect()->route('students');
+                case 'admin':
+                    return redirect()->route('dashboard');
+            }
         } catch (\Exception $e) {
             return $e;
         }

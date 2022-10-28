@@ -1,22 +1,22 @@
 <div class="form-control">
     <x-inputs.text
         name="user.name"
-        label="Name"
+        label="{{ __('crud.students.inputs.name') }}"
         wire:model.defer="user.name"
     ></x-inputs.text>
     <x-inputs.email
         name="user.email"
-        label="Email"
+        label="{{ __('crud.students.inputs.email') }}"
         wire:model.defer="user.email"
     ></x-inputs.email>
     <x-inputs.text
         name="user.phone"
-        label="Phone"
+        label="{{ __('crud.students.inputs.phone') }}"
         wire:model.defer="user.phone"
     ></x-inputs.text>
     <x-inputs.select
         name="user.career_in_center_id"
-        label="Career"
+        label="{{ __('crud.students.inputs.career_in_center_id') }}"
         wire:model.defer="user.career_in_center_id"
     >
         <option value="">Select center</option>

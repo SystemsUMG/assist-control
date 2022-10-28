@@ -63,7 +63,7 @@ class Courses extends Component
 
     public function render()
     {
-        $courses = Course::where('name', 'like', '%' . $this->search . '%')->paginate(8);
+        $courses = Course::where('name', 'like', "%{$this->search}%")->paginate(8);
         return view('livewire.courses.courses', [
             'courses' => $courses
         ]);

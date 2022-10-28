@@ -63,7 +63,7 @@ class Semesters extends Component
 
     public function render()
     {
-        $semesters = Semester::where('name', 'like', '%' . $this->search . '%')->paginate(8);
+        $semesters = Semester::where('name', 'like', "%{$this->search}%")->paginate(8);
         return view('livewire.semesters.semesters', [
             'semesters' => $semesters
         ]);

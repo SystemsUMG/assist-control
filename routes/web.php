@@ -3,15 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Controllers\SocialAuthGoogleController;
+use App\Http\Livewire\NoAssignment\NoAssignment;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Users\UserProfile;
-use App\Http\Livewire\Users\UserManagement;
+use App\Http\Livewire\Roles\Roles;
+use App\Http\Livewire\Permissions\Permissions;
 use App\Http\Livewire\Centers\Centers;
 use App\Http\Livewire\Careers\Careers;
 use App\Http\Livewire\Courses\Courses;
 use App\Http\Livewire\Semesters\Semesters;
 use App\Http\Livewire\Students\Students;
-use App\Http\Livewire\Notifications;
+use App\Http\Livewire\Teachers\Teachers;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,16 +35,18 @@ Route::get('login-google', [SocialAuthGoogleController::class, 'redirect'])->nam
 Route::get('google-callback', [SocialAuthGoogleController::class, 'callback'])->name('login.callback');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('user-profile', UserProfile::class)->name('user.profile');
+    Route::get('no-assignment', NoAssignment::class)->name('no-assignment');
     Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::get('user-profile', UserProfile::class)->name('user-profile');
+    Route::get('roles', Roles::class)->name('roles');
+    Route::get('permissions', Permissions::class)->name('permissions');
 
     //pages
 
-    Route::get('users', UserManagement::class)->name("users");
     Route::get('centers', Centers::class)->name("centers");
     Route::get('careers', Careers::class)->name("careers");
     Route::get('courses', Courses::class)->name("courses");
     Route::get('semesters', Semesters::class)->name("semesters");
     Route::get('students', Students::class)->name("students");
-    Route::get('notifications', Notifications::class)->name("notifications");
+    Route::get('teachers', Teachers::class)->name("teachers");
 });

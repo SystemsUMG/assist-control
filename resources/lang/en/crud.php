@@ -7,6 +7,28 @@ return [
         'no_items_found' => 'No items found'
     ],
 
+    'roles' => [
+        'name' => 'Roles',
+        'index_title' => 'List of Roles',
+        'create_title' => 'Create a new role',
+        'edit_title' => 'Edit a role',
+        'delete_title' => 'Delete a role',
+        'inputs' => [
+            'name' => 'Name',
+        ],
+    ],
+
+    'permissions' => [
+        'name' => 'Permissions',
+        'index_title' => 'List of Permissions',
+        'create_title' => 'Create a new permission',
+        'edit_title' => 'Edit a permission',
+        'delete_title' => 'Delete a permission',
+        'inputs' => [
+            'name' => 'Name',
+        ],
+    ],
+
     'centers' => [
         'name' => 'Centers',
         'index_title' => 'List of Centers',
@@ -62,11 +84,33 @@ return [
         'create_title' => 'Create a new Student',
         'edit_title' => 'Edit a Student',
         'delete_title' => 'Delete a Student',
-        'successfully_created_title' => 'Successfully created user',
-        'successfully_edited_title' => 'Successfully edited user',
-        'successfully_delete_title' => 'Successfully deleted user',
-        'enabled_user' => 'Enabled user',
-        'disabled_user' => 'Disabled user',
+        'successfully_created_title' => 'Successfully created student',
+        'successfully_edited_title' => 'Successfully edited student',
+        'successfully_delete_title' => 'Successfully deleted student',
+        'enabled_user' => 'Enabled student',
+        'disabled_user' => 'Disabled student',
+        'inputs' => [
+            'tuition' => 'Tuition',
+            'name' => 'Name',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'status' => 'Status',
+            'type' => 'Type',
+            'career_in_center_id' => 'Center and career',
+        ],
+    ],
+
+    'teachers' => [
+        'name' => 'Teachers',
+        'index_title' => 'List of Teachers',
+        'create_title' => 'Create a new Teacher',
+        'edit_title' => 'Edit a Teacher',
+        'delete_title' => 'Delete a Teacher',
+        'successfully_created_title' => 'Successfully created teacher',
+        'successfully_edited_title' => 'Successfully edited teacher',
+        'successfully_delete_title' => 'Successfully deleted teacher',
+        'enabled_user' => 'Enabled teacher',
+        'disabled_user' => 'Disabled teacher',
         'inputs' => [
             'tuition' => 'Tuition',
             'name' => 'Name',

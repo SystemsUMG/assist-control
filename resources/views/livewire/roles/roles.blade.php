@@ -9,68 +9,61 @@
         </div>
         <div class="col-2 col-sm-6">
             <button class="btn btn-primary my-3" type="button"
-                    wire:click="newCenter"
-                    title="Add center">
+                    wire:click="newRole"
+                    title="Add role">
                 <i class="fa-solid fa-circle-plus fa-xl"></i>
             </button>
         </div>
     </div>
     <hr>
+
     <div class="row">
-        @forelse($centers as $center)
+        @forelse($roles as $role)
             <div class="col-sm-3 mt-6">
                 <div class="card" data-animation="true">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <a class="d-block blur-shadow-image text-center">
-                            <h3>{!! $center->name !!}</h3>
+                        <a class="d-block blur-shadow-image text-role">
+                            <h3>{!! $role->name !!}</h3>
                         </a>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body pt-2">
                         <div class="d-flex mt-n6 mx-auto">
                             <button class="btn btn-link text-primary ms-auto border-0"
                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Delete" wire:click="deleteCenter({{ $center }})">
+                                    title="Delete" wire:click="deleteRole({{ $role }})">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                             <button class="btn btn-link text-info me-auto border-0" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom" title="Edit"
-                                    wire:click="editCenter({{ $center }})"
+                                    wire:click="editRole({{ $role }})"
                             >
                                 <i class="material-icons text-lg">edit</i>
                             </button>
                         </div>
-                        <p class="mb-0">
-                            {!! $center->description ?? 'Empty' !!}
-                        </p>
                     </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer">
+                    <div class="card-footer pt-0">
                         <div class="row">
                             <x-inputs.select
-                                wire:key="{{ $center->id }}"
-                                name="career_id.{{ $center->id }}"
-                                label="{{ __('crud.careers.name') }}"
-                                wire:model="career_id.{{ $center->id }}"
+                                wire:key="{{ $role->id }}"
+                                name="permissionsId.{{ $role->id }}"
+                                label="{{ __('crud.roles.name') }}"
+                                wire:model="permissionsId.{{ $role->id }}"
                             >
                                 <option selected value="">Select career</option>
-                                @foreach($careers ?? [] as $career)
-                                    <option value="{{ $career->id }}">{!! $career->name !!}</option>
+                                @foreach($permissions ?? [] as $permission)
+                                    <option value="{{ $permission->id }}">{!! $permission->name !!}</option>
                                 @endforeach
                             </x-inputs.select>
-                            <button class="btn btn-dark" type="button" wire:click="addCareerInCenter({{ $center }})">
+                            <button class="btn btn-dark" type="button" wire:click="addPermission({{ $role }})">
                                 <i class="fa-solid fa-circle-plus fa-xl"></i>
                             </button>
                         </div>
                         <ol class="list-group list-group-numbered">
-                            @forelse($center->careerInCenters ?? [] as $careerInCenters)
-                                <li class="text-sm">
-                                    {!! $careerInCenters->career_code !!} -
-                                    {!! $careerInCenters->career->name !!}
+                            @forelse($role->permissions ?? [] as $permission)
+                                <li class="text-sm list-group-item">
+                                    {!! $permission->name !!}
                                     <i class="fa-solid fa-trash text-danger"
-                                       wire:click="deleteCareerInCenter({{ $careerInCenters->id }})"></i>
-                                    <a href="{{ route('semesters')  }}">
-                                        <i class="fa-solid fa-arrow-right text-dark"></i>
-                                    </a>
+                                       wire:click="deletePermission({{ $role }},{{ $permission }})"></i>
                                 </li>
                             @empty
                                 <div class="text-center">
@@ -79,15 +72,16 @@
                             @endforelse
                         </ol>
                     </div>
+
                 </div>
             </div>
         @empty
-            <div class="text-center display-6">
+            <div class="text-role display-6">
                 @lang('crud.common.no_items_found')
             </div>
         @endforelse
         <div class="mt-4">
-            {{ $centers->links() }}
+            {{ $roles->links() }}
         </div>
     </div>
 
@@ -106,14 +100,9 @@
 
             <div class="modal-body">
                 <x-inputs.text
-                    name="center.name"
-                    label="{{ __('crud.centers.inputs.name') }}"
-                    wire:model.defer="center.name"
-                ></x-inputs.text>
-                <x-inputs.text
-                    name="center.description"
-                    label="{{ __('crud.centers.inputs.description') }}"
-                    wire:model.defer="center.description"
+                    name="role.name"
+                    label="{{ __('crud.roles.inputs.name') }}"
+                    wire:model.defer="role.name"
                 ></x-inputs.text>
             </div>
 

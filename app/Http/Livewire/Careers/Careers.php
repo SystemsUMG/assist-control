@@ -63,7 +63,7 @@ class Careers extends Component
 
     public function render()
     {
-        $careers = Career::where('name', 'like', '%' . $this->search . '%')->paginate(8);
+        $careers = Career::where('name', 'like', "%{$this->search}%")->paginate(8);
         return view('livewire.careers.careers', [
             'careers' => $careers
         ]);

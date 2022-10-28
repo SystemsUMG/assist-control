@@ -66,6 +66,7 @@
     <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css?v=3.0.0" rel="stylesheet"/>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     @livewireStyles
 </head>
 <body
@@ -116,7 +117,9 @@
         <div class="toast fade show p-2 bg-white" role="alert" aria-live="assertive" id="toast"
              aria-atomic="true">
             <div class="toast-header border-0">
-                <i class="fa-solid fa-xmark me-2 text-danger fa-lg"></i>
+                <i class="material-icons text-danger me-2">
+                    campaign
+                </i>
                 <span class="me-auto font-weight-bold">Success</span>
                 <small class="text-body">{!! \Carbon\Carbon::now()->format('h:s')  !!}</small>
                 <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast"

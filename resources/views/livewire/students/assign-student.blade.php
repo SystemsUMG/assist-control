@@ -13,7 +13,7 @@
     </x-inputs.select>
     <x-inputs.select
         name="user.career_in_center_id"
-        label="Career"
+        label="{{ __('crud.students.inputs.career_in_center_id') }}"
         wire:model.defer="user.career_in_center_id"
     >
         <option value="">Select center</option>

@@ -16,8 +16,6 @@ class UserProfile extends Component
             'user.name' => 'required',
             'user.email' => 'required|email|unique:users,email,' . $this->user->id,
             'user.phone' => 'required|max:10',
-            'user.about' => 'required:max:150',
-            'user.location' => 'required'
         ];
     }
 
@@ -37,8 +35,8 @@ class UserProfile extends Component
         $this->validate();
 
         $this->user->save();
-        return back()->withStatus('Profile successfully updated.');
-
+        session()->flash('success', __('crud.students.successfully_edited_title'));
+        $this->redirectRoute('user-profile');
     }
 
     public function render()

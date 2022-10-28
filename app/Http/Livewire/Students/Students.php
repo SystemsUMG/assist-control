@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 /**
  * @property Collection $careerInCenters
@@ -24,6 +25,9 @@ use Livewire\Component;
  */
 class Students extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
 
     public $search = '';
 
@@ -37,9 +41,6 @@ class Students extends Component
     {
         $this->user = $user;
 
-        $this->students = User::where('name', 'like', '%' . $this->search . '%')
-            ->where('type', 'student')
-            ->get();
         $this->users = User::where('type', 'general')->get();
         $this->careerInCenters = CareerInCenters::get();
     }
@@ -89,7 +90,7 @@ class Students extends Component
     public function save()
     {
         $this->validate();
-        $this->user->tuition = rand(1, 9999);
+        $this->user->tuition = rand(1000, 9999);
         $this->user->status = 1;
         $this->user->type = 'student';
         if ($this->user->id) {
@@ -131,6 +132,11 @@ class Students extends Component
 
     public function render(): Factory|View|Application
     {
-        return view('livewire.students.students');
+        $students = User::where('name', 'like', "%{$this->search}%")
+            ->where('type', 'student')
+            ->paginate(10);
+        return view('livewire.students.students', [
+            'students' => $students
+        ]);
     }
 }
