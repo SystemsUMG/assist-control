@@ -164,6 +164,10 @@
 
         function calculateStudents() {
             let ctx = document.getElementById("chart-students").getContext("2d");
+            if (window.graph) {
+                window.graph.clear();
+                window.graph.destroy();
+            }
             let student_id = document.getElementById("student").value
             if (student_id) {
                 axios.get('{{ route('report-student') }}', {
@@ -172,8 +176,7 @@
                     }
                 })
                     .then(function (response) {
-                        console.log();
-                        new Chart(ctx, {
+                        window.graph = new Chart(ctx, {
                             type: "bar",
                             data: {
                                 datasets: [{
