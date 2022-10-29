@@ -19,4 +19,14 @@ class StudentAssignment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function courseSection(): BelongsTo
+    {
+        return $this->belongsTo(CourseSection::class);
+    }
+
+    public function assistances(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Assistance::class);
+    }
 }

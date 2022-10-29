@@ -122,16 +122,16 @@
                     label="{{ __('crud.course_sections.inputs.name') }}"
                     wire:model.defer="courseSection.name"
                 ></x-inputs.text>
-                <x-inputs.date
+                <x-inputs.text
                     name="courseSection.start_date"
                     label="{{ __('crud.course_sections.inputs.start_date') }}"
                     wire:model.defer="courseSection.start_date"
-                ></x-inputs.date>
-                <x-inputs.date
+                ></x-inputs.text>
+                <x-inputs.text
                     name="courseSection.end_date"
                     label="{{ __('crud.course_sections.inputs.end_date') }}"
                     wire:model.defer="courseSection.end_date"
-                ></x-inputs.date>
+                ></x-inputs.text>
                 <x-inputs.select
                     name="courseSection.career_in_center_id"
                     label="{{ __('crud.course_sections.inputs.career_in_center_id') }}"

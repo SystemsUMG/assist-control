@@ -43,6 +43,9 @@
                         </div>
                     </div>
                 @empty
+                    <div class="text-center">
+                        @lang('crud.common.no_items_found')
+                    </div>
                 @endforelse
                 {{ $permissions->links() }}
             </div>

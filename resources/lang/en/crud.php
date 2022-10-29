@@ -130,8 +130,8 @@ return [
         'delete_title' => 'Delete a Section',
         'inputs' => [
             'name' => 'Name',
-            'start_date' => 'Start date',
-            'end_date' => 'End date',
+            'start_date' => 'Start time',
+            'end_date' => 'End time',
             'career_in_center_id' => 'Center and career',
             'user_id' => 'Teacher',
             'course_id' => 'Course',
@@ -142,4 +142,9 @@ return [
     'student_assignment' => [
         'name' => 'Student Assignment'
     ],
+
+    'assistances' => [
+        'name' => 'Assistances',
+        'create_title' => 'Create a new assistance',
+    ]
 ];

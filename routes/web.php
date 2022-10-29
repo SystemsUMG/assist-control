@@ -15,6 +15,7 @@ use App\Http\Livewire\Semesters\Semesters;
 use App\Http\Livewire\Students\Students;
 use App\Http\Livewire\Teachers\Teachers;
 use App\Http\Livewire\Sections\Sections;
+use App\Http\Livewire\Assistances\Assistances;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('students', Students::class)->name("students");
     Route::get('teachers', Teachers::class)->name("teachers");
     Route::get('sections', Sections::class)->name("sections");
+    Route::get('assistances', Assistances::class)->name("assistances");
 });
