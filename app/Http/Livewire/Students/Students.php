@@ -121,9 +121,15 @@ class Students extends Component
 
     public function deleteStudent(User $user)
     {
-        $user->delete();
-        session()->flash('success', __('crud.students.successfully_delete_title'));
-        $this->redirectRoute('students');
+        if ($user->studentAssignment->count() > 0) {
+            session()->flash('error', __('It cannot be deleted, there is data that depends on this.'));
+            $this->redirectRoute('students');
+        } else {
+            $user->studentAssignment->each->delete();
+            $user->delete();
+            session()->flash('success', __('crud.students.successfully_delete_title'));
+            $this->redirectRoute('students');
+        }
     }
 
     public function status(User $user)

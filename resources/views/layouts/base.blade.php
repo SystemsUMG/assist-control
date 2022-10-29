@@ -120,7 +120,7 @@
                 <i class="material-icons text-danger me-2">
                     campaign
                 </i>
-                <span class="me-auto font-weight-bold">Success</span>
+                <span class="me-auto font-weight-bold">Error</span>
                 <small class="text-body">{!! \Carbon\Carbon::now()->format('h:s')  !!}</small>
                 <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast"
                    aria-label="Close"></i>

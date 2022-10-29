@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(CareerInCenters::class);
     }
+
+    public function studentAssignment(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(StudentAssignment::class);
+    }
 }
