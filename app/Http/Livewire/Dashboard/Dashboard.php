@@ -26,7 +26,7 @@ class Dashboard extends Component
         $totalTeachers = User::where('type', 'teacher')->count();
         $totalStudents = User::where('type', 'students')->count();
         $this->authorize('Dashboard', auth()->user());
-        return view('livewire.Dashboard.Dashboard',[
+        return view('livewire.dashboard.dashboard',[
             'totalCenters' => $totalCenters,
             'totalCareers' => $totalCareers,
             'totalTeachers' => $totalTeachers,
