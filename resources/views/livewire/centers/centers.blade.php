@@ -63,7 +63,7 @@
                         </div>
                         <ol class="list-group list-group-numbered">
                             @forelse($center->careerInCenters ?? [] as $careerInCenters)
-                                <li class="text-sm">
+                                <li class="text-sm list-group-item">
                                     {!! $careerInCenters->career_code !!} -
                                     {!! $careerInCenters->career->name !!}
                                     <i class="fa-solid fa-trash text-danger"

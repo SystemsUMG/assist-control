@@ -1,21 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Auth\Login;
 use App\Http\Controllers\SocialAuthGoogleController;
-use App\Http\Livewire\NoAssignment\NoAssignment;
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Users\UserProfile;
-use App\Http\Livewire\Roles\Roles;
-use App\Http\Livewire\Permissions\Permissions;
-use App\Http\Livewire\Centers\Centers;
+use App\Http\Livewire\Assistances\Assistances;
+use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Careers\Careers;
+use App\Http\Livewire\Centers\Centers;
 use App\Http\Livewire\Courses\Courses;
+use App\Http\Livewire\Dashboard\Dashboard;
+use App\Http\Livewire\NoAssignment\NoAssignment;
+use App\Http\Livewire\Permissions\Permissions;
+use App\Http\Livewire\Roles\Roles;
+use App\Http\Livewire\Sections\Sections;
 use App\Http\Livewire\Semesters\Semesters;
 use App\Http\Livewire\Students\Students;
 use App\Http\Livewire\Teachers\Teachers;
-use App\Http\Livewire\Sections\Sections;
-use App\Http\Livewire\Assistances\Assistances;
+use App\Http\Livewire\Users\UserProfile;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

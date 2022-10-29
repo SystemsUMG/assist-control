@@ -82,7 +82,7 @@
                         </div>
                         <ol class="list-group list-group-numbered">
                             @forelse($courseSection->studentAssignment ?? [] as $studentAssignment)
-                                <li class="text-sm">
+                                <li class="text-sm list-group-item">
                                     {!! $studentAssignment->user->name !!}
                                     <i class="fa-solid fa-trash text-danger"
                                        wire:click="deleteStudentAssignment({{ $studentAssignment->id }})"></i>
