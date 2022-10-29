@@ -3,7 +3,7 @@
         <div class="row align-items-center justify-content-lg-center">
             <div class="col-12">
                 <div class="text-center text-sm text-white">
-                    Group No. 2 - <script>
+                    Group No. 7 - <script>
                         document.write(new Date().getFullYear())
                     </script>
                 </div>
