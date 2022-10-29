@@ -50,7 +50,7 @@ class Assistances extends Component
     {
         $this->newAssistance = $studentAssignment;
         if (\Carbon\Carbon::now()->setTimezone('America/Guatemala')->format('h:i') >= $this->newAssistance->courseSection->start_date
-            && \Carbon::now()->setTimezone('America/Guatemala') <= $this->newAssistance->courseSection->end_date) {
+            && \Carbon\Carbon::now()->setTimezone('America/Guatemala') <= $this->newAssistance->courseSection->end_date) {
             $this->outOfTime = false;
         } else {
             $this->outOfTime = true;
