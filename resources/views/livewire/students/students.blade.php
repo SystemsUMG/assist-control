@@ -78,7 +78,7 @@
                                             {!! $student->careerInCenter->center->name !!}
                                         </p>
                                         <p class="text-xs text-secondary mb-0">
-                                            {!! $student->careerInCenter->center->name !!}
+                                            {!! $student->careerInCenter->career->name !!}
                                         </p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
@@ -149,7 +149,7 @@
                             <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" href="javascript:;"
                                role="tab" aria-selected="true" wire:click="createView()">
                                 <i class="fa-solid fa-circle-plus"></i>
-                                <span class="ms-1">Create User</span>
+                                <span class="ms-1">Create Student</span>
                             </a>
                         </li>
                         @if (!$editing)

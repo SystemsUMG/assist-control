@@ -45,7 +45,7 @@ class Students extends Component
         $this->careerInCenters = CareerInCenters::get();
     }
 
-    protected function rules()
+    protected function rules(): array
     {
         return [
             'user.name' => [Rule::when($this->view == 'create-student', ['required'])],
@@ -100,11 +100,14 @@ class Students extends Component
             $user->type = $this->user->type;
             $user->career_in_center_id = $this->user->career_in_center_id;
             $user->save();
+            $user->syncRoles('student');
             session()->flash('success', __('crud.students.successfully_edited_title'));
         } else {
             $this->user->save();
+            $this->user->syncRoles('student');
             session()->flash('success', __('crud.students.successfully_created_title'));
         }
+
         $this->showingModal = false;
         $this->redirectRoute('students');
     }

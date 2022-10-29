@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-
                 <div class="px-3">
                     <div class="row">
                         <div class="col-9 col-sm-6" wire:ignore>
@@ -14,7 +13,7 @@
                         </div>
                         <div class="col-2 col-sm-6">
                             <button class="btn btn-primary my-3" type="button"
-                                    wire:click="newStudent"
+                                    wire:click="newTeacher"
                                     title="Add teacher">
                                 <i class="fa-solid fa-user-plus fa-xl"></i>
                             </button>
@@ -35,9 +34,6 @@
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     {{ __('crud.teachers.inputs.phone') }}
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                    {{ __('crud.teachers.inputs.career_in_center_id') }}
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     {{ __('crud.teachers.inputs.status') }}
@@ -65,21 +61,13 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">
-                                            {!! $teacher->careerInCenter->career_code.'-'.$teacher->created_at->format('Y').'-'.$teacher->tuition !!}
+                                            {!! $teacher->tuition !!}
                                         </span>
                                     </td>
                                     <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">
                                             {!! $teacher->phone ?? 'None' !!}
                                         </span>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">
-                                            {!! $teacher->careerInCenter->center->name !!}
-                                        </p>
-                                        <p class="text-xs text-secondary mb-0">
-                                            {!! $teacher->careerInCenter->center->name !!}
-                                        </p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         @if ($teacher->status)
@@ -128,4 +116,60 @@
             </div>
         </div>
     </div>
+
+    <x-modal wire:model="showingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ $modalTitle }}</h5>
+                <button
+                    type="button"
+                    class="btn"
+                    wire:click="$toggle('showingModal')"
+                >
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="nav-wrapper position-relative end-0">
+                    <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" href="javascript:;"
+                               role="tab" aria-selected="true" wire:click="createView()">
+                                <i class="fa-solid fa-circle-plus"></i>
+                                <span class="ms-1">Create Teacher</span>
+                            </a>
+                        </li>
+                        @if (!$editing)
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="javascript:;"
+                                   role="tab" aria-selected="false" wire:click="assignView()">
+                                    <i class="fa-solid fa-user-check"></i>
+                                    <span class="ms-1">To Assign</span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+                @include("livewire.teachers.$view")
+            </div>
+
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-light float-left"
+                    wire:click="$toggle('showingModal')"
+                >
+                    <i class="fas fa-times"></i>
+                    @lang('crud.common.cancel')
+                </button>
+
+                <button type="button" class="btn btn-primary" wire:click="save">
+                    <i class="fas fa-save"></i>
+                    @lang('crud.common.save')
+                </button>
+            </div>
+        </div>
+    </x-modal>
+
 </div>
