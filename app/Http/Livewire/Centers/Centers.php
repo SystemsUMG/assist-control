@@ -106,7 +106,7 @@ class Centers extends Component
 
     public function render(): Factory|View|Application
     {
-        $this->authorize('List Centers');
+        $this->authorize('List centers');
         $centers = Center::where('name', 'like', "%{$this->search}%")->paginate(4);
         return view('livewire.centers.centers', [
             'centers' => $centers
