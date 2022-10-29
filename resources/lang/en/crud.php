@@ -121,4 +121,25 @@ return [
             'career_in_center_id' => 'Center and career',
         ],
     ],
+
+    'course_sections' => [
+        'name' => 'Sections',
+        'index_title' => 'List of Sections',
+        'create_title' => 'Create a new Section',
+        'edit_title' => 'Edit a Section',
+        'delete_title' => 'Delete a Section',
+        'inputs' => [
+            'name' => 'Name',
+            'start_date' => 'Start date',
+            'end_date' => 'End date',
+            'career_in_center_id' => 'Center and career',
+            'user_id' => 'Teacher',
+            'course_id' => 'Course',
+            'semester_id' => 'Semester',
+        ],
+    ],
+
+    'student_assignment' => [
+        'name' => 'Student Assignment'
+    ],
 ];

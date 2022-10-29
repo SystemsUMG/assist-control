@@ -68,9 +68,6 @@
                                     {!! $careerInCenters->career->name !!}
                                     <i class="fa-solid fa-trash text-danger"
                                        wire:click="deleteCareerInCenter({{ $careerInCenters->id }})"></i>
-                                    <a href="{{ route('semesters')  }}">
-                                        <i class="fa-solid fa-arrow-right text-dark"></i>
-                                    </a>
                                 </li>
                             @empty
                                 <div class="text-center">

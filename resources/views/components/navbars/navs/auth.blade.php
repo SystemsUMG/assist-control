@@ -33,7 +33,7 @@
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="rounded-circle" style="width: 32px" src="{{ auth()->user()->google_avatar }}"
-                             alt=""/>
+                             alt="profile_image"/>
                     </a>
                     <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
                         aria-labelledby="dropdownMenuButton">

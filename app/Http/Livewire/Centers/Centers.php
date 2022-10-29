@@ -36,7 +36,7 @@ class Centers extends Component
     public function mount(Center $center)
     {
         $this->center = $center;
-        $this->careers = Career::all();
+        $this->careers = Career::get();
     }
 
     protected function rules()

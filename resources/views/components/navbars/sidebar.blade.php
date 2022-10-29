@@ -102,6 +102,15 @@
                     <span class="nav-link-text ms-1">Teachers</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ Request::is('sections','sections/*') ? ' active bg-gradient-primary' : '' }}  "
+                   href="{{ route('sections') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Sections</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

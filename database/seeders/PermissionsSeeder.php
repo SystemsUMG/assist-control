@@ -40,6 +40,8 @@ class PermissionsSeeder extends Seeder
         $userRole->givePermissionTo($currentPermissions);
 
         // Create teacher role and assign existing permissions
+        Permission::create(['name' => 'Dashboard']);
+
         Permission::create(['name' => 'List students']);
         Permission::create(['name' => 'View student']);
         Permission::create(['name' => 'Create student']);
@@ -69,8 +71,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'Create permission and role']);
         Permission::create(['name' => 'Update permission and role']);
         Permission::create(['name' => 'Delete permission and role']);
-
-        Permission::create(['name' => 'Dashboard']);
 
         Permission::create(['name' => 'List centers']);
         Permission::create(['name' => 'View center']);
