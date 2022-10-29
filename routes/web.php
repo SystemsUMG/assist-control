@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SocialAuthGoogleController;
+use App\Http\Controllers\ReportController;
 use App\Http\Livewire\Assistances\Assistances;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Careers\Careers;
@@ -53,4 +54,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('teachers', Teachers::class)->name("teachers");
     Route::get('sections', Sections::class)->name("sections");
     Route::get('assistances', Assistances::class)->name("assistances");
+
+    Route::get('report-student', [ReportController::class, 'student'])->name("report-student");
 });

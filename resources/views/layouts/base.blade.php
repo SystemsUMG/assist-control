@@ -66,7 +66,7 @@
     <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css?v=3.0.0" rel="stylesheet"/>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     @livewireStyles
 </head>
 <body

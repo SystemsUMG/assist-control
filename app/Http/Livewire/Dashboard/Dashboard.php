@@ -22,15 +22,19 @@ class Dashboard extends Component
     public function render(): Factory|View|Application
     {
         $totalCenters = Center::count();
-        $totalCareers = Career::count();
+        $careers = Career::get();
+        $totalCareers = $careers->count();
         $totalTeachers = User::where('type', 'teacher')->count();
+        $students = User::where('type', 'student')->get();
         $totalStudents = User::where('type', 'student')->count();
         $this->authorize('Dashboard', auth()->user());
         return view('livewire.dashboard.dashboard',[
             'totalCenters' => $totalCenters,
+            'careers' => $careers,
             'totalCareers' => $totalCareers,
             'totalTeachers' => $totalTeachers,
-            'totalStudents' => $totalStudents
+            'students' => $students,
+            'totalStudents' => $totalStudents,
         ]);
     }
 }

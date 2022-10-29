@@ -2,6 +2,7 @@
     <!-- Navbar -->
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
@@ -60,27 +61,37 @@
                 </div>
             </div>
         </div>
+
         <div class="row mt-4">
+
             <div class="col-md-6 mt-4 mb-4">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-students" class="chart-canvas" height="170"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <h6 class="mb-0 ">Attendance by date and student</h6>
-                        <p class="text-sm ">Last Campaign Performance</p>
+                        <x-inputs.select
+                            name="student"
+                        >
+                            <option value="" disabled selected>Select a student</option>
+                            @forelse($students as $student)
+                                <option value="{{ $student->id}}">{!! $student->name !!}</option>
+                            @empty
+                            @endforelse
+                        </x-inputs.select>
                         <hr class="dark horizontal">
                         <div class="d-flex ">
-                            <i class="material-icons text-sm my-auto me-1">schedule</i>
-                            <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+                            <button class="btn btn-primary" onclick="calculateStudents()">Consult</button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -102,6 +113,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -122,6 +134,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 mt-4 mb-3">
                 <div class="card z-index-2 ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -142,92 +155,106 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
-</div>
 @push('js')
-
     <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
 
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["M", "T", "W", "T", "F", "S", "S"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "rgba(255, 255, 255, .8)",
-                    data: [50, 20, 10, 22, 50, 10, 40],
-                    maxBarThickness: 6
-                },],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
+        function calculateStudents() {
+            let ctx = document.getElementById("chart-students").getContext("2d");
+            let student_id = document.getElementById("student").value
+            if (student_id) {
+                axios.get('{{ route('report-student') }}', {
+                    params: {
+                        student_id: student_id
                     }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
+                })
+                    .then(function (response) {
+                        console.log();
+                        new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                datasets: [{
+                                    label: "Assistances",
+                                    tension: 0.4,
+                                    borderWidth: 0,
+                                    borderRadius: 4,
+                                    borderSkipped: false,
+                                    backgroundColor: "rgba(255, 255, 255, .8)",
+                                    data: response.data,
+                                    maxBarThickness: 6
+                                },],
                             },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: false,
+                                    }
+                                },
+                                interaction: {
+                                    intersect: false,
+                                    mode: 'index',
+                                },
+                                scales: {
+                                    y: {
+                                        grid: {
+                                            drawBorder: false,
+                                            display: true,
+                                            drawOnChartArea: true,
+                                            drawTicks: false,
+                                            borderDash: [5, 5],
+                                            color: 'rgba(255, 255, 255, .2)'
+                                        },
+                                        ticks: {
+                                            suggestedMin: 0,
+                                            suggestedMax: 500,
+                                            beginAtZero: true,
+                                            padding: 10,
+                                            font: {
+                                                size: 14,
+                                                weight: 300,
+                                                family: "Roboto",
+                                                style: 'normal',
+                                                lineHeight: 2
+                                            },
+                                            color: "#fff"
+                                        },
+                                    },
+                                    x: {
+                                        grid: {
+                                            drawBorder: false,
+                                            display: true,
+                                            drawOnChartArea: true,
+                                            drawTicks: false,
+                                            borderDash: [5, 5],
+                                            color: 'rgba(255, 255, 255, .2)'
+                                        },
+                                        ticks: {
+                                            display: true,
+                                            color: '#f8f9fa',
+                                            padding: 10,
+                                            font: {
+                                                size: 14,
+                                                weight: 300,
+                                                family: "Roboto",
+                                                style: 'normal',
+                                                lineHeight: 2
+                                            },
+                                        }
+                                    },
+                                },
                             },
-                        }
-                    },
-                },
-            },
-        });
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }
 
 
         var ctx2 = document.getElementById("chart-line").getContext("2d");
