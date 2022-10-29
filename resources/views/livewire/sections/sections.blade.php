@@ -101,6 +101,9 @@
                 @lang('crud.common.no_items_found')
             </div>
         @endforelse
+        <div class="mt-4">
+            {{ $courseSections->links() }}
+        </div>
     </div>
 
     <x-modal wire:model="showingModal">
