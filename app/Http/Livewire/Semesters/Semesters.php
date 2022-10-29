@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Semesters;
 
 use App\Models\Semester;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,6 +13,11 @@ class Semesters extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    use AuthorizesRequests;
+
+    /**
+     * @throws AuthorizationException
+     */
 
     public Semester $semester;
 
@@ -63,6 +70,7 @@ class Semesters extends Component
 
     public function render()
     {
+        $this->authorize('List semesters');
         $semesters = Semester::where('name', 'like', "%{$this->search}%")->paginate(8);
         return view('livewire.semesters.semesters', [
             'semesters' => $semesters

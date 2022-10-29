@@ -7,10 +7,12 @@ use App\Models\Center;
 use App\Models\Student;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -28,6 +30,11 @@ class Students extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    use AuthorizesRequests;
+
+    /**
+     * @throws AuthorizationException
+     */
 
     public $search = '';
 
@@ -135,6 +142,7 @@ class Students extends Component
 
     public function render(): Factory|View|Application
     {
+        $this->authorize('List students');
         $students = User::where('name', 'like', "%{$this->search}%")
             ->where('type', 'student')
             ->paginate(10);

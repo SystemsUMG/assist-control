@@ -8,9 +8,11 @@ use App\Models\CourseSection;
 use App\Models\Semester;
 use App\Models\StudentAssignment;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -28,6 +30,11 @@ class Sections extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    use AuthorizesRequests;
+
+    /**
+     * @throws AuthorizationException
+     */
 
     public CourseSection $courseSection;
 
@@ -113,6 +120,7 @@ class Sections extends Component
 
     public function render(): Factory|View|Application
     {
+        $this->authorize('List sections');
         $courseSections = CourseSection::where('name', 'like', "%{$this->search}%")->paginate(4);
         return view('livewire.sections.sections', [
             'courseSections' => $courseSections

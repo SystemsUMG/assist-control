@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Centers;
 use App\Models\Career;
 use App\Models\CareerInCenters;
 use App\Models\Center;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,6 +22,12 @@ class Centers extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    use AuthorizesRequests;
+
+
+    /**
+     * @throws AuthorizationException
+     */
 
     public Center $center;
 
@@ -98,6 +106,7 @@ class Centers extends Component
 
     public function render(): Factory|View|Application
     {
+        $this->authorize('List Centers');
         $centers = Center::where('name', 'like', "%{$this->search}%")->paginate(4);
         return view('livewire.centers.centers', [
             'centers' => $centers

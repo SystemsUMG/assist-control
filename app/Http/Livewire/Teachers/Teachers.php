@@ -3,17 +3,30 @@
 namespace App\Http\Livewire\Teachers;
 
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 /**
  * @property $users
  */
 class Teachers extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+    use AuthorizesRequests;
+
+    /**
+     * @throws AuthorizationException
+     */
+
+
     public $search;
 
     public $editing = false;
@@ -108,6 +121,7 @@ class Teachers extends Component
 
     public function render(): Factory|View|Application
     {
+        $this->authorize('List teachers');
         $teachers = User::where('name', 'like', "%{$this->search}%")
             ->where('type', 'teacher')
             ->paginate(10);

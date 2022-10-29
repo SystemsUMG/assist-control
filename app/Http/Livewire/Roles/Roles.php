@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Roles;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -13,6 +15,11 @@ use Spatie\Permission\Models\Role;
 class Roles extends Component
 {
     use WithPagination;
+    use AuthorizesRequests;
+
+    /**
+     * @throws AuthorizationException
+     */
 
     protected $paginationTheme = 'bootstrap';
 
@@ -84,6 +91,7 @@ class Roles extends Component
 
     public function render(): Factory|View|Application
     {
+        $this->authorize('List roles', Role::class);
         $roles = Role::where('name', 'like', "%{$this->search}%")->orderBy('id', 'desc')->paginate(4);
         $permissions = Permission::all();
         return view('livewire.roles.roles', [

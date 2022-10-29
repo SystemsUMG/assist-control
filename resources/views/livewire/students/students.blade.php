@@ -65,7 +65,7 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">
-                                            {!! $student->careerInCenter->career_code.'-'.$student->created_at->format('Y').'-'.$student->tuition !!}
+                                            {!! $student->careerInCenter->career_code ?? '0000'.'-'.$student->created_at->format('Y').'-'.$student->tuition !!}
                                         </span>
                                     </td>
                                     <td class="align-middle text-center">
@@ -75,10 +75,10 @@
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">
-                                            {!! $student->careerInCenter->center->name !!}
+                                            {!! $student->careerInCenter->center->name ?? 'Empty' !!}
                                         </p>
                                         <p class="text-xs text-secondary mb-0">
-                                            {!! $student->careerInCenter->career->name !!}
+                                            {!! $student->careerInCenter->career->name ?? 'Empty' !!}
                                         </p>
                                     </td>
                                     <td class="align-middle text-center text-sm">

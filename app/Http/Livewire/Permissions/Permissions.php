@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Permissions;
 
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -9,6 +11,12 @@ use Spatie\Permission\Models\Permission;
 class Permissions extends Component
 {
     use WithPagination;
+    use AuthorizesRequests;
+
+    /**
+     * @throws AuthorizationException
+     */
+
 
     protected $paginationTheme = 'bootstrap';
 
@@ -56,6 +64,7 @@ class Permissions extends Component
 
     public function render()
     {
+        $this->authorize('List roles', Permission::class);
         $permissions = Permission::where('name', 'like', "%{$this->search}%")->latest()->paginate(16);
         return view('livewire.permissions.permissions', [
             'permissions' => $permissions
