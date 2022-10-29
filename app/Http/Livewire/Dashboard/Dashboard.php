@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dashboard;
 
 use App\Models\Career;
 use App\Models\Center;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
@@ -23,6 +24,7 @@ class Dashboard extends Component
     {
         $totalCenters = Center::count();
         $careers = Career::get();
+        $courses = Course::get();
         $totalCareers = $careers->count();
         $totalTeachers = User::where('type', 'teacher')->count();
         $students = User::where('type', 'student')->get();
@@ -31,6 +33,7 @@ class Dashboard extends Component
         return view('livewire.dashboard.dashboard',[
             'totalCenters' => $totalCenters,
             'careers' => $careers,
+            'courses' => $courses,
             'totalCareers' => $totalCareers,
             'totalTeachers' => $totalTeachers,
             'students' => $students,

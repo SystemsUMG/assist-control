@@ -56,4 +56,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('assistances', Assistances::class)->name("assistances");
 
     Route::get('report-student', [ReportController::class, 'student'])->name("report-student");
+    Route::get('report-courses', [ReportController::class, 'courses'])->name("report-courses");
 });
